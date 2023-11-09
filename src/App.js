@@ -26,9 +26,18 @@
 
 // export default App;
 
+import { getAuth,onAuthStateChanged } from "firebase/auth";
+
 import Signup from "./Signup";
 import Signin from "./Signin";
+
+import { useEffect } from "react";
+
 function App() {
+
+  useEffect(()=>{
+
+  })
   return (
 
     <div className="App">
