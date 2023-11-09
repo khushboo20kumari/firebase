@@ -1,29 +1,48 @@
 import { useState } from "react";
 
-function Signin(){
+import { app } from "./Data";
 
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-    const HandleEmail=(e)=>{
+function Signin() {
+
+    const Auth = getAuth(app)
+
+    const [email, setEmail] = useState("")
+
+    const [password, setPassword] = useState("")
+
+    const HandleEmail = (e) => {
+
         setEmail(e.target.value)
     }
 
-    const HandlePassword=(e)=>{
+    const HandlePassword = (e) => {
+
         setPassword(e.target.value)
     }
 
+    const HandleSignin = () => {
+        
+        setEmail("")
+        setPassword("")
 
+        signInWithEmailAndPassword(Auth,email,password).then((res)=>{
+            console.log("succfully")
+        }).catch((erro)=>{
+            console.log("errre")
+        })
+    }
 
-    return(
+    return (
         <>
-          <label onChange={HandleEmail} value={email}>Name</label>
-          <input placeholder="Name"></input><br></br>
+            <label>Emaill</label>
+            <input  onChange={HandleEmail}  placeholder="Email...." value={email}></input><br></br>
 
-          <label>password</label>
-          <input onChange={HandlePassword} placeholder="password" value={password}></input><br></br>
+            <label>password</label>
+            <input onChange={HandlePassword} placeholder="password" value={password}></input><br></br>
 
-          <button>signin</button>
+            <button onClick={HandleSignin}>signin</button>
 
         </>
     )

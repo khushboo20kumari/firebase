@@ -27,10 +27,12 @@
 // export default App;
 
 import Signup from "./Signup";
+import Signin from "./Signin";
 function App() {
   return (
 
     <div className="App">
+      <Signin/>
       <Signup/>
     </div>
 
