@@ -26,10 +26,11 @@
 
 // export default App;
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+
+import { getAuth, onAuthStateChanged ,signOut} from "firebase/auth";
 
 import { app } from "./Data";
-
 
 import Signup from "./Signup";
 
@@ -59,6 +60,11 @@ function App() {
 
   }, [])
 
+  const HandleLogout=()=>{
+    signOut(Athu)
+    
+  }
+
 
 
   return (
@@ -66,6 +72,7 @@ function App() {
       {user !== null ? (
         <>
           <p>hello {user.email}</p>
+          <button onClick={HandleLogout}>logout</button>
         </>
       ) : (
         <>
@@ -79,43 +86,3 @@ function App() {
   )
 }
 export default App;
-
-
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
-// import { app } from "./Data";
-// import Signup from "./Signup";
-// import Signin from "./Signin";
-// import { useEffect, useState } from "react";
-
-// function App() {
-//   const Athu = getAuth(app);
-//   const [user, setUser] = useState(null);
-
-//   useEffect(() => {
-//     onAuthStateChanged(Athu, user => {
-//       if (user) {
-//         setUser(user);
-//       } else {
-//         setUser(null);
-//       }
-//     });
-//   }, []);
-
-//   return (
-//     <>
-
-//       {user !== null ? (
-//         <>
-//           <p>hello {user.email}</p>
-//         </>
-//       ) : (
-//         <>
-//           <Signin />
-//           <Signup />
-//         </>
-//       )}
-//     </>
-//   );
-// }
-
-// export default App;
