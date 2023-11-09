@@ -26,25 +26,96 @@
 
 // export default App;
 
-import { getAuth,onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+import { app } from "./Data";
+
 
 import Signup from "./Signup";
+
 import Signin from "./Signin";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const Athu = getAuth(app)
 
-  useEffect(()=>{
+  const [user, setUser] = useState(null)
 
-  })
+  useEffect(() => {
+
+    onAuthStateChanged(Athu, user => {
+      if (user) {
+        setUser(user)
+        // it means user is already logged
+
+      }
+      else {
+        setUser(null)
+        // it mense user is not logged user need to signin or signup
+      }
+    })
+
+
+  }, [])
+
+
+
   return (
+    <>
+      {user !== null ? (
+        <>
+          <p>hello {user.email}</p>
+        </>
+      ) : (
+        <>
+          <Signin />
+          <Signup />
+        </>
+      )}
 
-    <div className="App">
-      <Signin/>
-      <Signup/>
-    </div>
+    </>
 
   )
 }
 export default App;
+
+
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import { app } from "./Data";
+// import Signup from "./Signup";
+// import Signin from "./Signin";
+// import { useEffect, useState } from "react";
+
+// function App() {
+//   const Athu = getAuth(app);
+//   const [user, setUser] = useState(null);
+
+//   useEffect(() => {
+//     onAuthStateChanged(Athu, user => {
+//       if (user) {
+//         setUser(user);
+//       } else {
+//         setUser(null);
+//       }
+//     });
+//   }, []);
+
+//   return (
+//     <>
+
+//       {user !== null ? (
+//         <>
+//           <p>hello {user.email}</p>
+//         </>
+//       ) : (
+//         <>
+//           <Signin />
+//           <Signup />
+//         </>
+//       )}
+//     </>
+//   );
+// }
+
+// export default App;
