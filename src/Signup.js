@@ -3,32 +3,31 @@ import { app } from "./Data"
 import { useState } from "react";
 function Signup() {
 
-    const [name,setName]=useState("")
-    const [email,setEmail]=useState("")
+    // const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
 
-    const [password,setPassword]=useState("")
-    const [mobail,setMobail]=useState("")
+    const [password, setPassword] = useState("")
+    // const [mobail, setMobail] = useState("")
 
     const athu = getAuth(app)
 
-    const HandleName=(e)=>{
-        setName(e.target.value)
-    }
-
-    const HandlePassword=(e)=>{
+    const HandlePassword = (e) => {
         setPassword(e.target.value)
     }
 
-    const HandleMobail=(e)=>{
-        setMobail(e.target.value)
+   
+
+    const HandleEmail = (e) => {
+        setEmail(e.target.value)
     }
 
-
     const signup = () => {
+        setEmail("")
+       
+        setPassword("")
 
         createUserWithEmailAndPassword(
-            athu, "khushboo.kumari@navgurukul.org",
-            "Navgurukul@123"
+            athu,email, password
         ).then((res) => {
             console.log(res);
         }).catch((error) => {
@@ -40,18 +39,13 @@ function Signup() {
     return (
         <>
             <p>Signup Page</p>
-            <label>name</label>
-            <input onChange={HandleName} label="name"></input><br></br>
-
+           
             <label>Email</label>
-            <input onChange={HandleEmail} label="Email"></input>
+            <input onChange={HandleEmail} value={email} label="Email"></input><br></br>
 
             <label> password</label>
-            <input onChange={HandlePassword} label="password"></input>
-
-            <leble>mobail number</leble>
-            <input onChange={HandleMobail} leble="mobail number"></input>
-            <button onClick={signup}>submit</button>
+            <input onChange={HandlePassword} value={password} label="password"></input><br></br>
+            <button onClick={signup}>submit</button><br></br>
 
 
 

@@ -26,28 +26,12 @@
 
 // export default App;
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from "./Data"
+import Signup from "./Signup";
 function App() {
-
-  const athu = getAuth(app)
-  const signup = () => {
-    createUserWithEmailAndPassword(
-      athu, "khushboo.kumari@navgurukul.org",
-      "Navgurukul@123"
-    ).then((res) => {
-      console.log(res);
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
-
-
   return (
 
     <div className="App">
-      <p>Signup with firebase</p>
-      <button onClick={signup}>add</button>
+      <Signup/>
     </div>
 
   )
