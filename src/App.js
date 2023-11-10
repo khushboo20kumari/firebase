@@ -64,9 +64,6 @@ function App() {
     signOut(Athu)
     
   }
-
-
-
   return (
     <>
       {user !== null ? (
