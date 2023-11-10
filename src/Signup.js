@@ -2,7 +2,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "./Data"
 import { useState } from "react";
 import { Card } from "@mui/material";
-import { Tune } from "@mui/icons-material";
+import {Avatar,Typography,TextField,Button,Box} from "@mui/material";
 function Signup() {
 
     const [email, setEmail] = useState("")
@@ -42,7 +42,7 @@ function Signup() {
         setEmail(e.target.value)
     }
 
-    const signup = () => {
+    const HandlerSaveButton= () => {
         setEmail("")
 
         setPassword("")
@@ -59,20 +59,50 @@ function Signup() {
 
     return (
         <>
-          <Card sx={{ maxWidth: 600, marginTop: "100px", color: "white" }} className='signup'>
+        <center>
+                <Card sx={{ maxWidth: 300, marginTop: "100px", background: "#18224B",boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",color:"white"}} className='signup'>
+                     <Avatar sx={{m:"20px"}} src="/broken-image.jpg" />
+                    <Typography>Register Form</Typography>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <div>
+                            <TextField
+                                label="Name..."
+                                variant="standard"
+                                color="secondary"
+                                focused
+                            
+                            />
 
-            <p>Signup Page</p>
+                            <TextField
+                                label="Password"
+                                variant="standard"
+                                color="secondary"
+                                focused
+                                onChange={HandlePassword} value={password}
+                            />
 
-            <label>Email</label>
-            <input onChange={HandleEmail} value={email} label="Email"></input><br></br>
+                            <TextField
 
-            <label> password</label>
-            <input onChange={HandlePassword} value={password} label="password"></input><br></br>
-            <p style={{color:"red"}}>{errorMessage}</p>
-            <button onClick={signup}>submit</button><br></br>
+                                label="Email"
+                                variant="standard"
+                                color="secondary"
+                                focused
+                                onChange={HandleEmail} value={email}
+                            />
+                            <p style={{ color: "red" }}>{errorMessage}</p>
 
-        </Card>
-
+                        </div>
+                        <Button sx={{ width: "70%", borderRadius: "20px",m:"20px"}} variant='contained' onClick={HandlerSaveButton}>Save</Button>
+                    </Box>
+                </Card>
+            </center >
         </>
     )
 }
