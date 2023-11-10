@@ -1,10 +1,12 @@
 import { useState } from "react";
-
+import { Outlet, Link } from "react-router-dom";
 import { app } from "./Data";
-
+import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {Card,Avatar,Box,Typography,Button,TextField} from "@mui/material"
+
 function Signin() {
+    
     const [errorMessage, setErrorMessage] = useState("");
 
     const Auth = getAuth(app)
@@ -12,6 +14,13 @@ function Signin() {
     const [email, setEmail] = useState("")
 
     const [password, setPassword] = useState("")
+
+    const nav=useNavigate("")
+    const HandleSignup = () => {
+
+        nav("/signup")
+
+    }
 
     const HandleEmail = (e) => {
 
@@ -56,7 +65,7 @@ function Signin() {
     return (
         <>
             <center>
-                <Card sx={{ maxWidth: 300, marginTop: "100px", background: "#18224B", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px", color: "white" }} className='signup'>
+                <Card sx={{ maxWidth: 300, marginTop: "100px", background: "white", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px", color: "white" }} className='signup'>
                     <Avatar sx={{ m: "20px" }} src="/broken-image.jpg" />
                     <Typography>Sigin</Typography>
                     <Box
@@ -85,12 +94,17 @@ function Signin() {
                                 focused
                                 onChange={HandleEmail} placeholder="Email...." value={email}
                             />
+
                             <p style={{ color: "red" }}>{errorMessage}</p>
 
                         </div>
+
                         <Button sx={{ width: "70%", borderRadius: "20px", m: "20px" }} variant='contained' onClick={HandleSignin}>Save</Button>
+
+                      <Button> <Link to="/signup">Signup</Link></Button>
                     </Box>
                 </Card>
+                <Outlet /> 
             </center >
 
         </>

@@ -1,34 +1,8 @@
 // import { getDatabase, set, ref } from "firebase/database";
 // import { app } from "./Data";
 import './App.css';
-// const db = getDatabase(app)
-// function App() {
-
-//   const putData = () => {
-
-//     set(ref(db, "users/khushboo"), {
-//       id: "1",
-//       name: "khushboo",
-//       age: "16"
-//     })
-
-//   }
-
-//   return (
-
-//     <div className="App">
-//       <button onClick={putData}>add</button>
-//     </div>
-
-//   );
-
-// }
-
-// export default App;
-
-
-
-import { getAuth, onAuthStateChanged ,signOut} from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { app } from "./Data";
 
@@ -37,7 +11,7 @@ import Signup from "./Signup";
 import Signin from "./Signin";
 
 import { useEffect, useState } from "react";
-
+import Navbar from './Navbar';
 function App() {
   const Athu = getAuth(app)
 
@@ -60,9 +34,9 @@ function App() {
 
   }, [])
 
-  const HandleLogout=()=>{
+  const HandleLogout = () => {
     signOut(Athu)
-    
+
   }
   return (
     <>
@@ -73,8 +47,20 @@ function App() {
         </>
       ) : (
         <>
-          <Signin />
-          <Signup />
+
+          <BrowserRouter>
+
+            <Routes>
+              <Route path="/" element={<Navbar/>}>
+
+                <Route path='/sigin' element={<Signin/>}></Route>
+
+                <Route path='/signup' element={<Signup/>}/>
+
+              </Route>
+            </Routes>
+          </BrowserRouter>
+
         </>
       )}
 
@@ -83,3 +69,29 @@ function App() {
   )
 }
 export default App;
+
+
+
+
+// import Home from "./Home";
+// import About from "./About";
+// import Contact from "./Contact";
+
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import necessary components from react-router-dom
+
+// function App() {
+//     return (
+//         <div className="App">
+//             <Router>
+
+//                 <Routes>
+//                     <Route path="/" element={<Home />}></Route>
+//                     <Route path="/about" element={<About />}></Route>
+//                     <Route path="/contact" element={<Contact />}></Route>
+//                 </Routes>
+//             </Router>
+
+//         </div>
+//     )
+// }
+// export default App;
