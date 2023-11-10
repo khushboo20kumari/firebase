@@ -62,7 +62,7 @@ function Signup() {
         <center>
                 <Card sx={{ maxWidth: 300, marginTop: "100px", background: "#18224B",boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",color:"white"}} className='signup'>
                      <Avatar sx={{m:"20px"}} src="/broken-image.jpg" />
-                    <Typography>Register Form</Typography>
+                    <Typography>Signup</Typography>
                     <Box
                         component="form"
                         sx={{

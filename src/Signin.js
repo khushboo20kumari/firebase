@@ -3,7 +3,7 @@ import { useState } from "react";
 import { app } from "./Data";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
+import {Card,Avatar,Box,Typography,Button,TextField} from "@mui/material"
 function Signin() {
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -46,9 +46,6 @@ function Signin() {
 
         setEmail("")
         setPassword("")
-
-
-
         signInWithEmailAndPassword(Auth, email, password).then((res) => {
             console.log("succfully")
         }).catch((erro) => {
@@ -58,13 +55,43 @@ function Signin() {
 
     return (
         <>
-            <label>Emaill</label>
-            <input onChange={HandleEmail} placeholder="Email...." value={email}></input><br></br>
+            <center>
+                <Card sx={{ maxWidth: 300, marginTop: "100px", background: "#18224B", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px", color: "white" }} className='signup'>
+                    <Avatar sx={{ m: "20px" }} src="/broken-image.jpg" />
+                    <Typography>Sigin</Typography>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <div>
 
-            <label>password</label>
-            <input onChange={HandlePassword} placeholder="password" value={password}></input><br></br>
+                            <TextField
+                                label="Password"
+                                variant="standard"
+                                color="secondary"
+                                focused
+                                onChange={HandlePassword} placeholder="password" value={password}
+                            />
 
-            <button onClick={HandleSignin}>signin</button>
+                            <TextField
+
+                                label="Email"
+                                variant="standard"
+                                color="secondary"
+                                focused
+                                onChange={HandleEmail} placeholder="Email...." value={email}
+                            />
+                            <p style={{ color: "red" }}>{errorMessage}</p>
+
+                        </div>
+                        <Button sx={{ width: "70%", borderRadius: "20px", m: "20px" }} variant='contained' onClick={HandleSignin}>Save</Button>
+                    </Box>
+                </Card>
+            </center >
 
         </>
     )
